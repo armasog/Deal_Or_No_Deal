@@ -1,11 +1,10 @@
 import random
 import config
-import game
 import copy
 
 amounts = copy.deepcopy(config.dollar_values)
 board_case_numbers = copy.deepcopy(config.case_numbers)
-
+round = 1
 
 def fill_cases():
     cases = {}
@@ -51,7 +50,7 @@ def open_case(case):
 
 
 def banker_offer():
-    global amounts
+    global amounts, round
     value_of_all_cases = 0
     cases_outstanding = 0
     for case in board_case_numbers:
@@ -63,5 +62,5 @@ def banker_offer():
     expected_value = value_of_all_cases / cases_outstanding
     # Sucker discount exists so that offers start well below the EV and approach it as the game goes on
     # There is an element of randomness so that offers are not predictable and are more similar to the show
-    sucker_discount = (0.73 / (float(game.round) + (random.uniform(-0.15, 0.15))))
+    sucker_discount = (0.73 / (float(round) + (random.uniform(-0.15, 0.15))))
     return expected_value * (1 - sucker_discount)

@@ -1,3 +1,3 @@
-import engine
+import game_engine
 import config
 
