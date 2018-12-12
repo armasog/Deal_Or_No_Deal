@@ -80,7 +80,7 @@ def exit_game(winnings):
 
 
 def play_round(number_to_open):
-    global past_offers
+    global past_offers, game_over, game_round
     if not game_over:
         i = 1
         print('Please select {} cases!'.format(number_to_open))
@@ -88,7 +88,7 @@ def play_round(number_to_open):
             print(open_case(pick_case()))
             print_board()
             i += 1
-        print('What a round! Time for our first offer...')
+        print('What a round! Time to hear the banker\'s offer..')
         time.sleep(5)
         offer = round(banker_offer())
         print('Past offers: ')
@@ -98,3 +98,4 @@ def play_round(number_to_open):
             exit_game(offer)
         else:
             past_offers.append(offer)
+            game_round += 1

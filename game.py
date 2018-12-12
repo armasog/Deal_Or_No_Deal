@@ -7,6 +7,7 @@ player_case = ge.pick_case()
 print('Great! Let\'s play Deal or No Deal!')
 ge.print_board()
 
+#  All possible rounds of gameplay are listed, however they will only run if ge.game_over is false
 ge.play_round(6)
 ge.play_round(5)
 ge.play_round(4)
@@ -18,5 +19,5 @@ ge.play_round(1)
 ge.play_round(1)
 ge.play_round(1)
 
-#  TODO: Finish the game by opening the players case and evaluating the deal
-#  TODO: Add automated testing
+print('Your case had: {}'.format(ge.open_case(player_case)))
+print('Thanks for playing!')
