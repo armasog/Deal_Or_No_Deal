@@ -49,13 +49,18 @@ def open_case(case):
     return board_cases[case]
 
 
+def cases_on_board():
+    global board_case_numbers
+    cases_left = 0
+    for case in board_case_numbers:
+        if case != 'X':
+            cases_left += 1
+    return cases_left
+
 def banker_offer():
     global amounts, round
     value_of_all_cases = 0
-    cases_outstanding = 1  # Starts at one to account for the player's selected case
-    for case in board_case_numbers:
-        if case != 'X':
-            cases_outstanding += 1
+    cases_outstanding = 1 + cases_on_board()  # Starts at one to account for the player's selected case
     for value in amounts:
         if value != 'X':
             value_of_all_cases += value
@@ -99,3 +104,17 @@ def play_round(number_to_open):
         else:
             past_offers.append(offer)
             game_round += 1
+
+
+def switch_case(player_case):
+    global amounts
+    if cases_on_board() == 1:
+        keep_or_switch = input('Would you like to keep you case (any key) or switch (S)?')
+        keep_or_switch = keep_or_switch.upper()
+        player_value = open_case(player_case)
+        if keep_or_switch == 'S':
+            for amount in amounts:
+                if amount != 'X':  # By process of elimination the last amount left on the board after opening the player case must be the value left in the last case
+                    return amount
+        else:
+            return player_value

@@ -17,7 +17,5 @@ ge.play_round(1)
 ge.play_round(1)
 ge.play_round(1)
 ge.play_round(1)
-ge.play_round(1)
-
-print('Your case had: {}'.format(ge.open_case(player_case)))
-print('Thanks for playing!')
+if not ge.game_over:
+    print('Congratulations! You have finished the game with {}!'.format(ge.switch_case(player_case)))

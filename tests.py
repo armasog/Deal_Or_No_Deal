@@ -17,7 +17,14 @@ class TestSuite(unittest.TestCase):
             ge.open_case(picked_case)
             assert ge.board_case_numbers[1] == 'X'
         ge.amounts[amounts_index] = original_amount  # Reset the application after test is complete
+        ge.board_case_numbers[1] = 2
 
     def test_deal_or_no_deal_bool(self):
         with mock.patch('builtins.input', return_value='D'):
             assert ge.deal_or_no_deal() == True
+
+    def test_one_case_left(self):
+        with mock.patch('builtins.input', return_value=2):
+            ge.pick_case()
+            assert ge.cases_on_board() == 25
+            ge.board_case_numbers[1] = 2  # Reset the application after test is complete
